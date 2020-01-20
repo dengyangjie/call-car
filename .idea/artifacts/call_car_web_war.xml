@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="call-car-web:war">
+    <output-path>$PROJECT_DIR$/call-car-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>call-car-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="call-car-web.war">
+      <element id="artifact" artifact-name="call-car-web:war exploded" />
+    </root>
+  </artifact>
+</component>

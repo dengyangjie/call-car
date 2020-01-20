@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/call-car.iml" filepath="$PROJECT_DIR$/.idea/call-car.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-common/call-car-common.iml" filepath="$PROJECT_DIR$/call-car-common/call-car-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-dao/call-car-dao.iml" filepath="$PROJECT_DIR$/call-car-dao/call-car-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-interface/call-car-interface.iml" filepath="$PROJECT_DIR$/call-car-interface/call-car-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-interface-impl/call-car-interface-impl.iml" filepath="$PROJECT_DIR$/call-car-interface-impl/call-car-interface-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-web/call-car-web.iml" filepath="$PROJECT_DIR$/call-car-web/call-car-web.iml" />
+    </modules>
+  </component>
+</project>
