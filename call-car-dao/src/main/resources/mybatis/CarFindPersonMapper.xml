@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callcar.dao.mapper.CarFindPersonMapper">
+  <resultMap id="BaseResultMap" type="com.callcar.dao.domain.CarFindPerson">
+    <id column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="car_user_name" jdbcType="VARCHAR" property="carUserName" />
+    <result column="car_sex" jdbcType="VARCHAR" property="carSex" />
+    <result column="car_user_phone" jdbcType="VARCHAR" property="carUserPhone" />
+    <result column="car_wechat" jdbcType="VARCHAR" property="carWechat" />
+    <result column="car_type" jdbcType="VARCHAR" property="carType" />
+    <result column="car_pass_addr" jdbcType="VARCHAR" property="carPassAddr" />
+    <result column="car_seat_person_num" jdbcType="INTEGER" property="carSeatPersonNum" />
+    <result column="car_send_addr" jdbcType="VARCHAR" property="carSendAddr" />
+    <result column="car_arive_addr" jdbcType="VARCHAR" property="carAriveAddr" />
+    <result column="car_current_seat_status" jdbcType="VARCHAR" property="carCurrentSeatStatus" />
+    <result column="car_send_status" jdbcType="VARCHAR" property="carSendStatus" />
+    <result column="car_reserve_status" jdbcType="VARCHAR" property="carReserveStatus" />
+    <result column="car_current_reserve_num" jdbcType="INTEGER" property="carCurrentReserveNum" />
+    <result column="car_send_start_time" jdbcType="TIMESTAMP" property="carSendStartTime" />
+    <result column="car_send_last_time" jdbcType="TIMESTAMP" property="carSendLastTime" />
+    <result column="car_remark" jdbcType="VARCHAR" property="carRemark" />
+    <result column="car_spell_type" jdbcType="VARCHAR" property="carSpellType" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    car_id, car_user_name, car_sex, car_user_phone, car_wechat, car_type, car_pass_addr, 
+    car_seat_person_num, car_send_addr, car_arive_addr, car_current_seat_status, car_send_status, 
+    car_reserve_status, car_current_reserve_num, car_send_start_time, car_send_last_time, 
+    car_remark, car_spell_type, create_date, modify_date
+  </sql>
+  <select id="selectByExample" parameterType="com.callcar.dao.domain.CarFindPersonExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from car_find_person
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car_find_person
+    where car_id = #{carId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from car_find_person
+    where car_id = #{carId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.callcar.dao.domain.CarFindPersonExample">
+    delete from car_find_person
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.callcar.dao.domain.CarFindPerson">
+    insert into car_find_person (car_id, car_user_name, car_sex, 
+      car_user_phone, car_wechat, car_type, 
+      car_pass_addr, car_seat_person_num, car_send_addr, 
+      car_arive_addr, car_current_seat_status, car_send_status, 
+      car_reserve_status, car_current_reserve_num, 
+      car_send_start_time, car_send_last_time, 
+      car_remark, car_spell_type, create_date, 
+      modify_date)
+    values (#{carId,jdbcType=INTEGER}, #{carUserName,jdbcType=VARCHAR}, #{carSex,jdbcType=VARCHAR}, 
+      #{carUserPhone,jdbcType=VARCHAR}, #{carWechat,jdbcType=VARCHAR}, #{carType,jdbcType=VARCHAR}, 
+      #{carPassAddr,jdbcType=VARCHAR}, #{carSeatPersonNum,jdbcType=INTEGER}, #{carSendAddr,jdbcType=VARCHAR}, 
+      #{carAriveAddr,jdbcType=VARCHAR}, #{carCurrentSeatStatus,jdbcType=VARCHAR}, #{carSendStatus,jdbcType=VARCHAR}, 
+      #{carReserveStatus,jdbcType=VARCHAR}, #{carCurrentReserveNum,jdbcType=INTEGER}, 
+      #{carSendStartTime,jdbcType=TIMESTAMP}, #{carSendLastTime,jdbcType=TIMESTAMP}, 
+      #{carRemark,jdbcType=VARCHAR}, #{carSpellType,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.callcar.dao.domain.CarFindPerson">
+    insert into car_find_person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="carUserName != null">
+        car_user_name,
+      </if>
+      <if test="carSex != null">
+        car_sex,
+      </if>
+      <if test="carUserPhone != null">
+        car_user_phone,
+      </if>
+      <if test="carWechat != null">
+        car_wechat,
+      </if>
+      <if test="carType != null">
+        car_type,
+      </if>
+      <if test="carPassAddr != null">
+        car_pass_addr,
+      </if>
+      <if test="carSeatPersonNum != null">
+        car_seat_person_num,
+      </if>
+      <if test="carSendAddr != null">
+        car_send_addr,
+      </if>
+      <if test="carAriveAddr != null">
+        car_arive_addr,
+      </if>
+      <if test="carCurrentSeatStatus != null">
+        car_current_seat_status,
+      </if>
+      <if test="carSendStatus != null">
+        car_send_status,
+      </if>
+      <if test="carReserveStatus != null">
+        car_reserve_status,
+      </if>
+      <if test="carCurrentReserveNum != null">
+        car_current_reserve_num,
+      </if>
+      <if test="carSendStartTime != null">
+        car_send_start_time,
+      </if>
+      <if test="carSendLastTime != null">
+        car_send_last_time,
+      </if>
+      <if test="carRemark != null">
+        car_remark,
+      </if>
+      <if test="carSpellType != null">
+        car_spell_type,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="carUserName != null">
+        #{carUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="carSex != null">
+        #{carSex,jdbcType=VARCHAR},
+      </if>
+      <if test="carUserPhone != null">
+        #{carUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="carWechat != null">
+        #{carWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carPassAddr != null">
+        #{carPassAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeatPersonNum != null">
+        #{carSeatPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="carSendAddr != null">
+        #{carSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carAriveAddr != null">
+        #{carAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carCurrentSeatStatus != null">
+        #{carCurrentSeatStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carSendStatus != null">
+        #{carSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carReserveStatus != null">
+        #{carReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carCurrentReserveNum != null">
+        #{carCurrentReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="carSendStartTime != null">
+        #{carSendStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carSendLastTime != null">
+        #{carSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carRemark != null">
+        #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="carSpellType != null">
+        #{carSpellType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.callcar.dao.domain.CarFindPersonExample" resultType="java.lang.Long">
+    select count(*) from car_find_person
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update car_find_person
+    <set>
+      <if test="record.carId != null">
+        car_id = #{record.carId,jdbcType=INTEGER},
+      </if>
+      <if test="record.carUserName != null">
+        car_user_name = #{record.carUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSex != null">
+        car_sex = #{record.carSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carUserPhone != null">
+        car_user_phone = #{record.carUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carWechat != null">
+        car_wechat = #{record.carWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carType != null">
+        car_type = #{record.carType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carPassAddr != null">
+        car_pass_addr = #{record.carPassAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSeatPersonNum != null">
+        car_seat_person_num = #{record.carSeatPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.carSendAddr != null">
+        car_send_addr = #{record.carSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carAriveAddr != null">
+        car_arive_addr = #{record.carAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carCurrentSeatStatus != null">
+        car_current_seat_status = #{record.carCurrentSeatStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSendStatus != null">
+        car_send_status = #{record.carSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carReserveStatus != null">
+        car_reserve_status = #{record.carReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carCurrentReserveNum != null">
+        car_current_reserve_num = #{record.carCurrentReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.carSendStartTime != null">
+        car_send_start_time = #{record.carSendStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carSendLastTime != null">
+        car_send_last_time = #{record.carSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.carRemark != null">
+        car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.carSpellType != null">
+        car_spell_type = #{record.carSpellType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update car_find_person
+    set car_id = #{record.carId,jdbcType=INTEGER},
+      car_user_name = #{record.carUserName,jdbcType=VARCHAR},
+      car_sex = #{record.carSex,jdbcType=VARCHAR},
+      car_user_phone = #{record.carUserPhone,jdbcType=VARCHAR},
+      car_wechat = #{record.carWechat,jdbcType=VARCHAR},
+      car_type = #{record.carType,jdbcType=VARCHAR},
+      car_pass_addr = #{record.carPassAddr,jdbcType=VARCHAR},
+      car_seat_person_num = #{record.carSeatPersonNum,jdbcType=INTEGER},
+      car_send_addr = #{record.carSendAddr,jdbcType=VARCHAR},
+      car_arive_addr = #{record.carAriveAddr,jdbcType=VARCHAR},
+      car_current_seat_status = #{record.carCurrentSeatStatus,jdbcType=VARCHAR},
+      car_send_status = #{record.carSendStatus,jdbcType=VARCHAR},
+      car_reserve_status = #{record.carReserveStatus,jdbcType=VARCHAR},
+      car_current_reserve_num = #{record.carCurrentReserveNum,jdbcType=INTEGER},
+      car_send_start_time = #{record.carSendStartTime,jdbcType=TIMESTAMP},
+      car_send_last_time = #{record.carSendLastTime,jdbcType=TIMESTAMP},
+      car_remark = #{record.carRemark,jdbcType=VARCHAR},
+      car_spell_type = #{record.carSpellType,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.callcar.dao.domain.CarFindPerson">
+    update car_find_person
+    <set>
+      <if test="carUserName != null">
+        car_user_name = #{carUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="carSex != null">
+        car_sex = #{carSex,jdbcType=VARCHAR},
+      </if>
+      <if test="carUserPhone != null">
+        car_user_phone = #{carUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="carWechat != null">
+        car_wechat = #{carWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null">
+        car_type = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carPassAddr != null">
+        car_pass_addr = #{carPassAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carSeatPersonNum != null">
+        car_seat_person_num = #{carSeatPersonNum,jdbcType=INTEGER},
+      </if>
+      <if test="carSendAddr != null">
+        car_send_addr = #{carSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carAriveAddr != null">
+        car_arive_addr = #{carAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carCurrentSeatStatus != null">
+        car_current_seat_status = #{carCurrentSeatStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carSendStatus != null">
+        car_send_status = #{carSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carReserveStatus != null">
+        car_reserve_status = #{carReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="carCurrentReserveNum != null">
+        car_current_reserve_num = #{carCurrentReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="carSendStartTime != null">
+        car_send_start_time = #{carSendStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carSendLastTime != null">
+        car_send_last_time = #{carSendLastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="carRemark != null">
+        car_remark = #{carRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="carSpellType != null">
+        car_spell_type = #{carSpellType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.callcar.dao.domain.CarFindPerson">
+    update car_find_person
+    set car_user_name = #{carUserName,jdbcType=VARCHAR},
+      car_sex = #{carSex,jdbcType=VARCHAR},
+      car_user_phone = #{carUserPhone,jdbcType=VARCHAR},
+      car_wechat = #{carWechat,jdbcType=VARCHAR},
+      car_type = #{carType,jdbcType=VARCHAR},
+      car_pass_addr = #{carPassAddr,jdbcType=VARCHAR},
+      car_seat_person_num = #{carSeatPersonNum,jdbcType=INTEGER},
+      car_send_addr = #{carSendAddr,jdbcType=VARCHAR},
+      car_arive_addr = #{carAriveAddr,jdbcType=VARCHAR},
+      car_current_seat_status = #{carCurrentSeatStatus,jdbcType=VARCHAR},
+      car_send_status = #{carSendStatus,jdbcType=VARCHAR},
+      car_reserve_status = #{carReserveStatus,jdbcType=VARCHAR},
+      car_current_reserve_num = #{carCurrentReserveNum,jdbcType=INTEGER},
+      car_send_start_time = #{carSendStartTime,jdbcType=TIMESTAMP},
+      car_send_last_time = #{carSendLastTime,jdbcType=TIMESTAMP},
+      car_remark = #{carRemark,jdbcType=VARCHAR},
+      car_spell_type = #{carSpellType,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+  <select id="queryCarInfo" parameterType="com.callcar.dao.domain.CarFindPerson" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from car_find_person
+    <where>
+      <if test="carId != null ">
+        car_id = #{carId,jdbcType=INTEGER}
+      </if>
+      <if test="carUserName != null">
+       and car_user_name = #{carUserName,jdbcType=VARCHAR}
+      </if>
+      <if test="carSex != null">
+        and car_sex = #{carSex,jdbcType=VARCHAR}
+      </if>
+      <if test="carUserPhone != null">
+        and  car_user_phone = #{carUserPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="carWechat != null">
+        and  car_wechat = #{carWechat,jdbcType=VARCHAR}
+      </if>
+      <if test="carType != null">
+        and  car_type = #{carType,jdbcType=VARCHAR}
+      </if>
+      <if test="carPassAddr != null">
+        and car_pass_addr = #{carPassAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="carSeatPersonNum != null">
+        and  car_seat_person_num = #{carSeatPersonNum,jdbcType=INTEGER}
+      </if>
+      <if test="carSendAddr != null">
+        and car_send_addr = #{carSendAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="carAriveAddr != null">
+        and car_arive_addr = #{carAriveAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="carCurrentSeatStatus != null">
+        and car_current_seat_status = #{carCurrentSeatStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="carSendStatus != null">
+        and car_send_status = #{carSendStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="carReserveStatus != null">
+        and car_reserve_status = #{carReserveStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="carCurrentReserveNum != null">
+        and car_current_reserve_num = #{carCurrentReserveNum,jdbcType=INTEGER}
+      </if>
+      <if test="carSendStartTime != null">
+        and car_send_start_time = #{carSendStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="carSendLastTime != null">
+        and car_send_last_time = #{carSendLastTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="carRemark != null">
+        and car_remark = #{carRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="carSpellType != null">
+        and car_spell_type = #{carSpellType,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null">
+        and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null">
+        and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

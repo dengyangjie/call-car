@@ -6,29 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="call-car-interface" />
+        <module name="call-car-service" />
         <module name="call-car-dao" />
-        <module name="call-car-interface-impl" />
-        <module name="call-car-web" />
         <module name="call-car-common" />
+        <module name="call-car-interface" />
+        <module name="call-car-web" />
+        <module name="call-car-interface-impl" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="call-car" target="1.8" />
-      <module name="call-car-common" target="1.7" />
-      <module name="call-car-dao" target="1.7" />
-      <module name="call-car-interface" target="1.7" />
-      <module name="call-car-interface-impl" target="1.7" />
-      <module name="call-car-web" target="1.7" />
+    <bytecodeTargetLevel target="8">
+      <module name="call-car" target="1.6" />
+      <module name="call-car-common" target="1.8" />
+      <module name="call-car-dao" target="1.8" />
+      <module name="call-car-interface" target="1.6" />
+      <module name="call-car-interface-impl" target="1.6" />
+      <module name="call-car-service" target="8" />
+      <module name="call-car-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="call-car-common" options="-parameters" />
-      <module name="call-car-dao" options="-parameters" />
-      <module name="call-car-interface" options="-parameters" />
-      <module name="call-car-interface-impl" options="-parameters" />
-      <module name="call-car-web" options="-parameters" />
+      <module name="call-car-common" options="" />
+      <module name="call-car-dao" options="" />
+      <module name="call-car-interface" options="" />
+      <module name="call-car-interface-impl" options="" />
+      <module name="call-car-web" options="" />
     </option>
   </component>
 </project>

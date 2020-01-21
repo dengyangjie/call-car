@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.callcar.dao.mapper.PersonFindCarMapper">
+  <resultMap id="BaseResultMap" type="com.callcar.dao.domain.PersonFindCar">
+    <id column="person_id" jdbcType="INTEGER" property="personId" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="person_phone" jdbcType="VARCHAR" property="personPhone" />
+    <result column="person_sex" jdbcType="VARCHAR" property="personSex" />
+    <result column="person_wechat" jdbcType="VARCHAR" property="personWechat" />
+    <result column="person_reserve_num" jdbcType="INTEGER" property="personReserveNum" />
+    <result column="person_send_addr" jdbcType="VARCHAR" property="personSendAddr" />
+    <result column="person_arive_addr" jdbcType="VARCHAR" property="personAriveAddr" />
+    <result column="person_reserve_status" jdbcType="VARCHAR" property="personReserveStatus" />
+    <result column="person_status" jdbcType="VARCHAR" property="personStatus" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    person_id, person_name, person_phone, person_sex, person_wechat, person_reserve_num, 
+    person_send_addr, person_arive_addr, person_reserve_status, person_status, create_date, 
+    modify_date
+  </sql>
+  <select id="selectByExample" parameterType="com.callcar.dao.domain.PersonFindCarExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from person_find_car
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from person_find_car
+    where person_id = #{personId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from person_find_car
+    where person_id = #{personId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.callcar.dao.domain.PersonFindCarExample">
+    delete from person_find_car
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.callcar.dao.domain.PersonFindCar">
+    insert into person_find_car (person_id, person_name, person_phone, 
+      person_sex, person_wechat, person_reserve_num, 
+      person_send_addr, person_arive_addr, person_reserve_status, 
+      person_status, create_date, modify_date
+      )
+    values (#{personId,jdbcType=INTEGER}, #{personName,jdbcType=VARCHAR}, #{personPhone,jdbcType=VARCHAR}, 
+      #{personSex,jdbcType=VARCHAR}, #{personWechat,jdbcType=VARCHAR}, #{personReserveNum,jdbcType=INTEGER}, 
+      #{personSendAddr,jdbcType=VARCHAR}, #{personAriveAddr,jdbcType=VARCHAR}, #{personReserveStatus,jdbcType=VARCHAR}, 
+      #{personStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.callcar.dao.domain.PersonFindCar">
+    insert into person_find_car
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="personPhone != null">
+        person_phone,
+      </if>
+      <if test="personSex != null">
+        person_sex,
+      </if>
+      <if test="personWechat != null">
+        person_wechat,
+      </if>
+      <if test="personReserveNum != null">
+        person_reserve_num,
+      </if>
+      <if test="personSendAddr != null">
+        person_send_addr,
+      </if>
+      <if test="personAriveAddr != null">
+        person_arive_addr,
+      </if>
+      <if test="personReserveStatus != null">
+        person_reserve_status,
+      </if>
+      <if test="personStatus != null">
+        person_status,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personId != null">
+        #{personId,jdbcType=INTEGER},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personPhone != null">
+        #{personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personSex != null">
+        #{personSex,jdbcType=VARCHAR},
+      </if>
+      <if test="personWechat != null">
+        #{personWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="personReserveNum != null">
+        #{personReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="personSendAddr != null">
+        #{personSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="personAriveAddr != null">
+        #{personAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="personReserveStatus != null">
+        #{personReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="personStatus != null">
+        #{personStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.callcar.dao.domain.PersonFindCarExample" resultType="java.lang.Long">
+    select count(*) from person_find_car
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update person_find_car
+    <set>
+      <if test="record.personId != null">
+        person_id = #{record.personId,jdbcType=INTEGER},
+      </if>
+      <if test="record.personName != null">
+        person_name = #{record.personName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personPhone != null">
+        person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personSex != null">
+        person_sex = #{record.personSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personWechat != null">
+        person_wechat = #{record.personWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personReserveNum != null">
+        person_reserve_num = #{record.personReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.personSendAddr != null">
+        person_send_addr = #{record.personSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personAriveAddr != null">
+        person_arive_addr = #{record.personAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personReserveStatus != null">
+        person_reserve_status = #{record.personReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personStatus != null">
+        person_status = #{record.personStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyDate != null">
+        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update person_find_car
+    set person_id = #{record.personId,jdbcType=INTEGER},
+      person_name = #{record.personName,jdbcType=VARCHAR},
+      person_phone = #{record.personPhone,jdbcType=VARCHAR},
+      person_sex = #{record.personSex,jdbcType=VARCHAR},
+      person_wechat = #{record.personWechat,jdbcType=VARCHAR},
+      person_reserve_num = #{record.personReserveNum,jdbcType=INTEGER},
+      person_send_addr = #{record.personSendAddr,jdbcType=VARCHAR},
+      person_arive_addr = #{record.personAriveAddr,jdbcType=VARCHAR},
+      person_reserve_status = #{record.personReserveStatus,jdbcType=VARCHAR},
+      person_status = #{record.personStatus,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.callcar.dao.domain.PersonFindCar">
+    update person_find_car
+    <set>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="personPhone != null">
+        person_phone = #{personPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="personSex != null">
+        person_sex = #{personSex,jdbcType=VARCHAR},
+      </if>
+      <if test="personWechat != null">
+        person_wechat = #{personWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="personReserveNum != null">
+        person_reserve_num = #{personReserveNum,jdbcType=INTEGER},
+      </if>
+      <if test="personSendAddr != null">
+        person_send_addr = #{personSendAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="personAriveAddr != null">
+        person_arive_addr = #{personAriveAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="personReserveStatus != null">
+        person_reserve_status = #{personReserveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="personStatus != null">
+        person_status = #{personStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.callcar.dao.domain.PersonFindCar">
+    update person_find_car
+    set person_name = #{personName,jdbcType=VARCHAR},
+      person_phone = #{personPhone,jdbcType=VARCHAR},
+      person_sex = #{personSex,jdbcType=VARCHAR},
+      person_wechat = #{personWechat,jdbcType=VARCHAR},
+      person_reserve_num = #{personReserveNum,jdbcType=INTEGER},
+      person_send_addr = #{personSendAddr,jdbcType=VARCHAR},
+      person_arive_addr = #{personAriveAddr,jdbcType=VARCHAR},
+      person_reserve_status = #{personReserveStatus,jdbcType=VARCHAR},
+      person_status = #{personStatus,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where person_id = #{personId,jdbcType=INTEGER}
+  </update>
+
+  <select id="personFindCarQryList" parameterType="com.callcar.dao.domain.PersonFindCar" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from person_find_car
+    <where>
+      <if test="personId != null">
+        person_id = #{personId,jdbcType=INTEGER}
+      </if>
+      <if test="personName != null">
+        and person_name = #{personName,jdbcType=VARCHAR}
+      </if>
+      <if test="personPhone != null">
+        and person_phone = #{personPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="personSex != null">
+        and person_sex = #{personSex,jdbcType=VARCHAR}
+      </if>
+      <if test="personWechat != null">
+        and person_wechat = #{personWechat,jdbcType=VARCHAR}
+      </if>
+      <if test="personReserveNum != null">
+        and person_reserve_num = #{personReserveNum,jdbcType=INTEGER}
+      </if>
+      <if test="personSendAddr != null">
+        and person_send_addr = #{personSendAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="personAriveAddr != null">
+        and person_arive_addr = #{personAriveAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="personReserveStatus != null">
+        and person_reserve_status = #{personReserveStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="personStatus != null">
+        and person_status = #{personStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null">
+        and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null">
+        and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by person_id desc
+  </select>
+</mapper>

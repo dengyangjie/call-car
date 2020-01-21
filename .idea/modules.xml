@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/call-car-dao/call-car-dao.iml" filepath="$PROJECT_DIR$/call-car-dao/call-car-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/call-car-interface/call-car-interface.iml" filepath="$PROJECT_DIR$/call-car-interface/call-car-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/call-car-interface-impl/call-car-interface-impl.iml" filepath="$PROJECT_DIR$/call-car-interface-impl/call-car-interface-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/call-car-service/call-car-service.iml" filepath="$PROJECT_DIR$/call-car-service/call-car-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/call-car-web/call-car-web.iml" filepath="$PROJECT_DIR$/call-car-web/call-car-web.iml" />
     </modules>
   </component>

@@ -10,7 +10,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/call-car-common/pom.xml" />
+        <option value="$PROJECT_DIR$/call-car-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/call-car-web/pom.xml" />
       </list>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="false" />
 </project>
